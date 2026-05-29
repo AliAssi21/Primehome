@@ -11,6 +11,7 @@
     "db:push": "pnpm --filter backend run db:push"
   },
   "private": true,
+  "packageManager": "pnpm@10.33.0",
   "devDependencies": {
     "prettier": "^3.8.3",
     "typescript": "~5.9.3"
