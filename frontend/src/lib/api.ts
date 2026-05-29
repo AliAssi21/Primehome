@@ -18,7 +18,7 @@ if (!rawApiUrl) {
   throw new Error("VITE_API_URL is not defined");
 }
 
-const baseUrl = rawApiUrl.replace(/\/+$/, "").trim();
+const baseUrl = rawApiUrl.replace(/\/+$/, "").replace(/\/api$/, "").trim();
 
 export const API_BASE = `${baseUrl}/api`;
 
