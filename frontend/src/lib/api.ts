@@ -12,13 +12,17 @@ export function getApiHeaders(): Record<string, string> {
   return headers;
 }
 
-const baseUrl = import.meta.env.VITE_API_URL ?? "";
+const rawApiUrl = import.meta.env.VITE_API_URL;
+
+if (!rawApiUrl) {
+  throw new Error("VITE_API_URL is not defined");
+}
+
+const baseUrl = rawApiUrl.replace(/\/+$/, "").trim();
 
 export const API_BASE = `${baseUrl}/api`;
 
-if (baseUrl) {
-  setBaseUrl(baseUrl);
-}
+setBaseUrl(baseUrl);
 
 export async function apiRequest<T>(
   method: string,
