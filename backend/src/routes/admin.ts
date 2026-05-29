@@ -4,48 +4,13 @@ import { db, ordersTable, usersTable, productsTable } from "../../db";
 import { ListCustomersQueryParams, GetCustomerParams, UpdateCustomerParams, UpdateCustomerBody, GetSalesChartQueryParams } from "../../api-zod";
 import { requireAdmin } from "../middlewares/auth.js";
 import multer from "multer";
-import path from "path";
-import fs from "fs";
-import { fileURLToPath } from "url";
+import { storage } from "../lib/cloudinary.js";
 
 const router = Router();
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-const UPLOAD_DIR = (() => {
-  const cwd = process.cwd();
-  if (fs.existsSync(path.join(cwd, "backend"))) {
-    return path.resolve(cwd, "backend/uploads");
-  }
-  return path.resolve(cwd, "uploads");
-})();
-
-if (!fs.existsSync(UPLOAD_DIR)) {
-  fs.mkdirSync(UPLOAD_DIR, { recursive: true });
-}
-
-const storage = multer.diskStorage({
-  destination: (_req, _file, cb) => {
-    cb(null, UPLOAD_DIR);
-  },
-  filename: (_req, file, cb) => {
-    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
-    cb(null, uniqueSuffix + path.extname(file.originalname));
-  },
-});
 
 const upload = multer({
   storage,
   limits: { fileSize: 5 * 1024 * 1024 }, // 5MB
-  fileFilter: (_req, file, cb) => {
-    const allowedTypes = ["image/jpeg", "image/png", "image/gif", "image/webp"];
-    if (allowedTypes.includes(file.mimetype)) {
-      cb(null, true);
-    } else {
-      cb(new Error("Only JPEG, PNG, GIF, and WEBP images are allowed"));
-    }
-  },
 });
 
 router.post("/admin/upload", requireAdmin, (req, res) => {
@@ -58,7 +23,7 @@ router.post("/admin/upload", requireAdmin, (req, res) => {
       res.status(400).json({ error: "No image file provided" });
       return;
     }
-    const fileUrl = `/uploads/${req.file.filename}`;
+    const fileUrl = req.file.path;
     res.json({ url: fileUrl });
   });
 });
