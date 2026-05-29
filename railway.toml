@@ -1,0 +1,7 @@
+[build]
+builder = "nixpacks"
+buildCommand = "pnpm --filter backend build"
+
+[deploy]
+startCommand = "pnpm --filter backend start"
+restartPolicyType = "on_failure"
