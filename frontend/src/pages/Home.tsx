@@ -286,10 +286,10 @@ export default function Home() {
             <h2 className="text-3xl md:text-4xl font-serif font-bold mb-3">The Prime Promise</h2>
             <p className="text-stone-400">Every order backed by our commitment to excellence</p>
           </motion.div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {[
               { icon: Shield, title: "Quality Guaranteed", desc: "Every product is carefully sourced and inspected. We stand by what we sell." },
-              { icon: RotateCcw, title: "Easy Returns", desc: "Not happy? Return within 7 days, no questions asked. Your satisfaction first." },
+              { icon: Truck, title: "Reliable Delivery", desc: "Carefully packaged and delivered directly to your doorstep across Lebanon." },
             ].map((item, i) => (
               <motion.div
                 key={i}
