@@ -1,4 +1,5 @@
 import { getToken, getAdminToken } from "./auth";
+import { setBaseUrl } from "../../api-client";
 
 export function getApiHeaders(): Record<string, string> {
   const token = getToken() || getAdminToken();
@@ -14,6 +15,10 @@ export function getApiHeaders(): Record<string, string> {
 // In production (Vercel), set VITE_API_BASE_URL=https://your-backend.up.railway.app
 // In dev, leave unset — Vite proxy forwards /api to localhost:8080
 export const API_BASE = (import.meta.env.VITE_API_BASE_URL ?? "") + "/api";
+
+if (import.meta.env.VITE_API_BASE_URL) {
+  setBaseUrl(import.meta.env.VITE_API_BASE_URL);
+}
 
 export async function apiRequest<T>(
   method: string,
