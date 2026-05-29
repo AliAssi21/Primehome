@@ -32,7 +32,8 @@ export async function apiRequest<T>(
   const t = token || getToken() || getAdminToken();
   if (t) headers["Authorization"] = `Bearer ${t}`;
 
-  const res = await fetch(`${API_BASE}${path}`, {
+  const cleanPath = path.replace(/✔|\s+/g, "");
+  const res = await fetch(`${API_BASE}${cleanPath}`, {
     method,
     headers,
     body: body ? JSON.stringify(body) : undefined,

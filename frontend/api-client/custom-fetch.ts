@@ -61,8 +61,10 @@ function isUrl(input: RequestInfo | URL): input is URL {
 }
 
 function applyBaseUrl(input: RequestInfo | URL): RequestInfo | URL {
-  if (!_baseUrl) return input;
   const url = resolveUrl(input);
+  if (!_baseUrl) {
+    return typeof input === "string" ? url : input;
+  }
   // Only prepend to relative paths (starting with /)
   if (!url.startsWith("/")) return input;
 
@@ -73,9 +75,15 @@ function applyBaseUrl(input: RequestInfo | URL): RequestInfo | URL {
 }
 
 function resolveUrl(input: RequestInfo | URL): string {
-  if (typeof input === "string") return input;
-  if (isUrl(input)) return input.toString();
-  return input.url;
+  let url = "";
+  if (typeof input === "string") {
+    url = input;
+  } else if (isUrl(input)) {
+    url = input.toString();
+  } else {
+    url = input.url;
+  }
+  return url.replace(/✔|\s+/g, "");
 }
 
 function mergeHeaders(...sources: Array<HeadersInit | undefined>): Headers {
