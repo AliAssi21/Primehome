@@ -1,4 +1,5 @@
 import { getToken, getAdminToken } from "./auth";
+import { setBaseUrl } from "../../api-client";
 
 export function getApiHeaders(): Record<string, string> {
   const token = getToken() || getAdminToken();
@@ -11,7 +12,13 @@ export function getApiHeaders(): Record<string, string> {
   return headers;
 }
 
-export const API_BASE = "/api";
+const baseUrl = import.meta.env.VITE_API_URL ?? "";
+
+export const API_BASE = `${baseUrl}/api`;
+
+if (baseUrl) {
+  setBaseUrl(baseUrl);
+}
 
 export async function apiRequest<T>(
   method: string,
