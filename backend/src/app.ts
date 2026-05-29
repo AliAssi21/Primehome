@@ -19,6 +19,8 @@ const UPLOAD_DIR = (() => {
   return path.resolve(cwd, "uploads");
 })();
 
+logger.info({ cwd: process.cwd(), UPLOAD_DIR }, "Upload directory resolved");
+
 const app: Express = express();
 
 app.use(helmet());
