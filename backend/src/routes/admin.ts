@@ -13,26 +13,21 @@ const router = Router();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const getUploadDir = () => {
+const UPLOAD_DIR = (() => {
   const cwd = process.cwd();
-  if (fs.existsSync(path.join(cwd, "../frontend/public"))) {
-    return path.resolve(cwd, "../frontend/public/uploads");
+  if (fs.existsSync(path.join(cwd, "backend"))) {
+    return path.resolve(cwd, "backend/uploads");
   }
-  if (fs.existsSync(path.join(cwd, "frontend/public"))) {
-    return path.resolve(cwd, "frontend/public/uploads");
-  }
-  return path.resolve(__dirname, "../../frontend/public/uploads");
-};
+  return path.resolve(cwd, "uploads");
+})();
 
-const uploadDir = getUploadDir();
-
-if (!fs.existsSync(uploadDir)) {
-  fs.mkdirSync(uploadDir, { recursive: true });
+if (!fs.existsSync(UPLOAD_DIR)) {
+  fs.mkdirSync(UPLOAD_DIR, { recursive: true });
 }
 
 const storage = multer.diskStorage({
   destination: (_req, _file, cb) => {
-    cb(null, uploadDir);
+    cb(null, UPLOAD_DIR);
   },
   filename: (_req, file, cb) => {
     const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
