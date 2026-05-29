@@ -9,7 +9,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { Switch } from "@/components/ui/switch";
-import { apiRequest } from "@/lib/api";
+import { apiRequest, API_BASE } from "@/lib/api";
 import { getAdminToken } from "@/lib/auth";
 import { useToast } from "@/hooks/use-toast";
 
@@ -76,7 +76,7 @@ export default function AdminProducts() {
         const formData = new FormData();
         formData.append("image", file);
 
-        const res = await fetch("/api/admin/upload", {
+        const res = await fetch(`${API_BASE}/admin/upload`, {
           method: "POST",
           headers: token ? { "Authorization": `Bearer ${token}` } : {},
           body: formData,
