@@ -262,7 +262,7 @@ export default function ProductDetail() {
               </div>
               <div className="flex items-center gap-3 text-muted-foreground">
                 <Shield className="h-4 w-4 text-primary shrink-0" />
-                <span>Quality guaranteed. Satisfaction first.</span>
+                <span>Premium quality assured.</span>
               </div>
             </div>
           </motion.div>

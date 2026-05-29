@@ -288,7 +288,7 @@ export default function Home() {
           </motion.div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {[
-              { icon: Shield, title: "Quality Guaranteed", desc: "Every product is carefully sourced and inspected. We stand by what we sell." },
+              { icon: Shield, title: "Premium Quality", desc: "Every product is carefully sourced and inspected. We stand by what we sell." },
               { icon: Truck, title: "Reliable Delivery", desc: "Carefully packaged and delivered directly to your doorstep across Lebanon." },
             ].map((item, i) => (
               <motion.div
