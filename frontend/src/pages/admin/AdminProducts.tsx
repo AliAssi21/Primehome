@@ -9,7 +9,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { Switch } from "@/components/ui/switch";
-import { apiRequest, API_BASE } from "@/lib/api";
+import { apiRequest, API_BASE, getImageUrl } from "@/lib/api";
 import { getAdminToken } from "@/lib/auth";
 import { useToast } from "@/hooks/use-toast";
 
@@ -249,7 +249,7 @@ export default function AdminProducts() {
                   <td className="p-3 pl-5">
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 rounded-lg bg-muted overflow-hidden shrink-0">
-                        {p.images[0] ? <img src={p.images[0]} alt={p.name} className="w-full h-full object-cover" /> : <div className="w-full h-full flex items-center justify-center text-sm">🏠</div>}
+                        {p.images[0] ? <img src={getImageUrl(p.images[0])} alt={p.name} className="w-full h-full object-cover" /> : <div className="w-full h-full flex items-center justify-center text-sm">🏠</div>}
                       </div>
                       <div>
                         <p className="font-medium line-clamp-1">{p.name}</p>
@@ -354,7 +354,7 @@ export default function AdminProducts() {
                 <div className="grid grid-cols-3 sm:grid-cols-4 gap-3">
                   {form.images.split("\n").map((s) => s.trim()).filter(Boolean).map((url, idx) => (
                     <div key={idx} className="relative aspect-square rounded-xl overflow-hidden bg-muted border border-border group">
-                      <img src={url} alt={`product image ${idx}`} className="w-full h-full object-cover" />
+                      <img src={getImageUrl(url)} alt={`product image ${idx}`} className="w-full h-full object-cover" />
                       <button
                         type="button"
                         onClick={() => handleRemoveImage(idx)}

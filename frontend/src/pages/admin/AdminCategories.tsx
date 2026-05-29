@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Textarea } from "@/components/ui/textarea";
-import { apiRequest, API_BASE } from "@/lib/api";
+import { apiRequest, API_BASE, getImageUrl } from "@/lib/api";
 import { getAdminToken } from "@/lib/auth";
 import { useToast } from "@/hooks/use-toast";
 
@@ -211,7 +211,7 @@ export default function AdminCategories() {
                           <div className="w-10 h-10 rounded-lg bg-muted overflow-hidden shrink-0 border border-border">
                             {cat.imageUrl ? (
                               <img
-                                src={cat.imageUrl}
+                                src={getImageUrl(cat.imageUrl)}
                                 alt={cat.name}
                                 className="w-full h-full object-cover"
                               />
@@ -348,7 +348,7 @@ export default function AdminCategories() {
               {form.imageUrl && (
                 <div className="relative w-full aspect-video rounded-xl overflow-hidden border bg-muted">
                   <img
-                    src={form.imageUrl}
+                    src={getImageUrl(form.imageUrl)}
                     alt="Category preview"
                     className="w-full h-full object-cover"
                   />

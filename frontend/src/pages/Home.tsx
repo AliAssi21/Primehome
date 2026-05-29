@@ -4,7 +4,7 @@ import { ArrowRight, Truck, Shield, RotateCcw, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useQuery } from "@tanstack/react-query";
-import { apiRequest } from "@/lib/api";
+import { apiRequest, getImageUrl } from "@/lib/api";
 
 interface Product {
   id: number;
@@ -46,7 +46,7 @@ function ProductCard({ product }: { product: Product }) {
         <div className="relative overflow-hidden rounded-xl bg-muted aspect-[3/4] mb-3">
           {product.images[0] ? (
             <img
-              src={product.images[0]}
+              src={getImageUrl(product.images[0])}
               alt={product.name}
               className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
             />
@@ -170,7 +170,7 @@ export default function Home() {
                 <Link href={`/categories/${cat.slug}`}>
                   <div className="group relative overflow-hidden rounded-2xl aspect-square cursor-pointer">
                     {cat.imageUrl ? (
-                      <img src={cat.imageUrl} alt={cat.name} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                      <img src={getImageUrl(cat.imageUrl)} alt={cat.name} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
                     ) : (
                       <div className="w-full h-full bg-gradient-to-br from-amber-100 to-stone-200" />
                     )}

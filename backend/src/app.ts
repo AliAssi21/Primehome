@@ -4,10 +4,32 @@ import pinoHttp from "pino-http";
 import helmet from "helmet";
 import router from "./routes";
 import { logger } from "./lib/logger";
+import path from "path";
+import fs from "fs";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const getUploadDir = () => {
+  const cwd = process.cwd();
+  if (fs.existsSync(path.join(cwd, "../frontend/public"))) {
+    return path.resolve(cwd, "../frontend/public/uploads");
+  }
+  if (fs.existsSync(path.join(cwd, "frontend/public"))) {
+    return path.resolve(cwd, "frontend/public/uploads");
+  }
+  return path.resolve(__dirname, "../../frontend/public/uploads");
+};
+
+const uploadDir = getUploadDir();
 
 const app: Express = express();
 
 app.use(helmet());
+
+// Serve static uploads
+app.use("/uploads", express.static(uploadDir));
 
 app.use(
   pinoHttp({

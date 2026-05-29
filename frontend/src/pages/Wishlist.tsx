@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useAuth } from "@/contexts/AuthContext";
 import { useCartContext } from "@/contexts/CartContext";
-import { apiRequest } from "@/lib/api";
+import { apiRequest, getImageUrl } from "@/lib/api";
 import { getToken } from "@/lib/auth";
 import { useToast } from "@/hooks/use-toast";
 
@@ -113,7 +113,7 @@ export default function Wishlist() {
               >
                 <div className="relative overflow-hidden rounded-xl bg-muted aspect-[3/4] mb-3">
                   {product.images[0] ? (
-                    <img src={product.images[0]} alt={product.name} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                    <img src={getImageUrl(product.images[0])} alt={product.name} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center text-4xl">🏠</div>
                   )}

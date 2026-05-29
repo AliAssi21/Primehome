@@ -24,6 +24,13 @@ export const API_BASE = `${baseUrl}/api`;
 
 setBaseUrl(baseUrl);
 
+export const getImageUrl = (path?: string | null) => {
+  if (!path) return "";
+  if (path.startsWith("http")) return path;
+  const cleanPath = path.startsWith("/") ? path : `/${path}`;
+  return `${baseUrl}${cleanPath}`;
+};
+
 export async function apiRequest<T>(
   method: string,
   path: string,

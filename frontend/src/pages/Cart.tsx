@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { useCartContext } from "@/contexts/CartContext";
 import { useAuth } from "@/contexts/AuthContext";
 import { useState } from "react";
-import { apiRequest } from "@/lib/api";
+import { apiRequest, getImageUrl } from "@/lib/api";
 import { useToast } from "@/hooks/use-toast";
 
 interface CouponResponse {
@@ -115,7 +115,7 @@ export default function Cart() {
                   <Link href={`/products/${item.productId}`}>
                     <div className="w-20 h-20 md:w-24 md:h-24 rounded-xl overflow-hidden bg-muted shrink-0">
                       {item.imageUrl ? (
-                        <img src={item.imageUrl} alt={item.productName} className="w-full h-full object-cover" />
+                        <img src={getImageUrl(item.imageUrl)} alt={item.productName} className="w-full h-full object-cover" />
                       ) : (
                         <div className="w-full h-full flex items-center justify-center text-2xl">🏠</div>
                       )}

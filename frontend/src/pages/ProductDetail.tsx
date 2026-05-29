@@ -6,7 +6,7 @@ import { ShoppingBag, Heart, ChevronLeft, Minus, Plus, Star, Truck, Shield } fro
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { apiRequest } from "@/lib/api";
+import { apiRequest, getImageUrl } from "@/lib/api";
 import { useCartContext } from "@/contexts/CartContext";
 import { useAuth } from "@/contexts/AuthContext";
 import { useToast } from "@/hooks/use-toast";
@@ -150,7 +150,7 @@ export default function ProductDetail() {
             <div className="relative aspect-square rounded-2xl overflow-hidden bg-muted mb-3">
               {product.images[selectedImage] ? (
                 <img
-                  src={product.images[selectedImage]}
+                  src={getImageUrl(product.images[selectedImage])}
                   alt={product.name}
                   className="w-full h-full object-cover"
                 />
@@ -171,7 +171,7 @@ export default function ProductDetail() {
                     onClick={() => setSelectedImage(i)}
                     className={`relative h-16 w-16 rounded-lg overflow-hidden border-2 transition-colors ${selectedImage === i ? "border-primary" : "border-transparent"}`}
                   >
-                    <img src={img} alt="" className="w-full h-full object-cover" />
+                    <img src={getImageUrl(img)} alt="" className="w-full h-full object-cover" />
                   </button>
                 ))}
               </div>
@@ -278,7 +278,7 @@ export default function ProductDetail() {
                   <Link href={`/products/${p.id}`}>
                     <div className="aspect-[3/4] rounded-xl overflow-hidden bg-muted mb-3">
                       {p.images[0] ? (
-                        <img src={p.images[0]} alt={p.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                        <img src={getImageUrl(p.images[0])} alt={p.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                       ) : (
                         <div className="w-full h-full flex items-center justify-center text-3xl">🏠</div>
                       )}

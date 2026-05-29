@@ -11,7 +11,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Textarea } from "@/components/ui/textarea";
 import { useCartContext } from "@/contexts/CartContext";
 import { useAuth } from "@/contexts/AuthContext";
-import { apiRequest } from "@/lib/api";
+import { apiRequest, getImageUrl } from "@/lib/api";
 import { getToken } from "@/lib/auth";
 import { useToast } from "@/hooks/use-toast";
 
@@ -216,7 +216,7 @@ export default function Checkout() {
                   <div key={item.productId} className="flex gap-3">
                     <div className="w-12 h-12 rounded-lg overflow-hidden bg-muted shrink-0">
                       {item.imageUrl ? (
-                        <img src={item.imageUrl} alt={item.productName} className="w-full h-full object-cover" />
+                        <img src={getImageUrl(item.imageUrl)} alt={item.productName} className="w-full h-full object-cover" />
                       ) : (
                         <div className="w-full h-full flex items-center justify-center text-lg">🏠</div>
                       )}

@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { apiRequest, API_BASE } from "@/lib/api";
+import { apiRequest, API_BASE, getImageUrl } from "@/lib/api";
 import { getAdminToken } from "@/lib/auth";
 import { useToast } from "@/hooks/use-toast";
 
@@ -159,7 +159,7 @@ export default function AdminSettings() {
               <div className="flex items-center gap-4">
                 <div className="w-16 h-16 rounded-xl bg-muted border border-border overflow-hidden shrink-0 flex items-center justify-center">
                   {form.logoUrl ? (
-                    <img src={form.logoUrl} alt="Store logo" className="w-full h-full object-cover" />
+                    <img src={getImageUrl(form.logoUrl)} alt="Store logo" className="w-full h-full object-cover" />
                   ) : (
                     <span className="text-2xl">🏠</span>
                   )}

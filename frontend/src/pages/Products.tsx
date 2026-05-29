@@ -9,7 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Slider } from "@/components/ui/slider";
-import { apiRequest } from "@/lib/api";
+import { apiRequest, getImageUrl } from "@/lib/api";
 import { useCartContext } from "@/contexts/CartContext";
 import { useToast } from "@/hooks/use-toast";
 
@@ -65,7 +65,7 @@ function ProductCard({ product }: { product: Product }) {
       <Link href={`/products/${product.id}`}>
         <div className="relative overflow-hidden rounded-xl bg-muted aspect-[3/4] mb-3">
           {product.images[0] ? (
-            <img src={product.images[0]} alt={product.name} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+            <img src={getImageUrl(product.images[0])} alt={product.name} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
           ) : (
             <div className="w-full h-full bg-gradient-to-br from-amber-50 to-stone-100 flex items-center justify-center text-4xl">🏠</div>
           )}

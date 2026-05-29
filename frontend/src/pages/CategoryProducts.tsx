@@ -4,7 +4,7 @@ import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { apiRequest } from "@/lib/api";
+import { apiRequest, getImageUrl } from "@/lib/api";
 import { useCartContext } from "@/contexts/CartContext";
 import { useToast } from "@/hooks/use-toast";
 
@@ -67,7 +67,7 @@ export default function CategoryProducts() {
       {/* Category Hero */}
       <div className="relative h-56 md:h-72 overflow-hidden bg-stone-900">
         {category?.imageUrl && (
-          <img src={category.imageUrl} alt={category.name} className="w-full h-full object-cover opacity-60" />
+          <img src={getImageUrl(category.imageUrl)} alt={category.name} className="w-full h-full object-cover opacity-60" />
         )}
         <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-4">
           <h1 className="text-4xl md:text-5xl font-serif font-bold mb-3">{category?.name ?? slug}</h1>
@@ -118,7 +118,7 @@ export default function CategoryProducts() {
                   <Link href={`/products/${product.id}`}>
                     <div className="relative overflow-hidden rounded-xl bg-muted aspect-[3/4] mb-3">
                       {product.images[0] ? (
-                        <img src={product.images[0]} alt={product.name} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                        <img src={getImageUrl(product.images[0])} alt={product.name} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                       ) : (
                         <div className="w-full h-full flex items-center justify-center text-4xl">🏠</div>
                       )}

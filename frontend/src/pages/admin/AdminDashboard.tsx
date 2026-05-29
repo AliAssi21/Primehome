@@ -4,7 +4,7 @@ import { DollarSign, Package, Users, ShoppingCart, TrendingUp, AlertTriangle, Cl
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar } from "recharts";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { apiRequest } from "@/lib/api";
+import { apiRequest, getImageUrl } from "@/lib/api";
 import { getAdminToken } from "@/lib/auth";
 
 interface AdminStats {
@@ -183,7 +183,7 @@ export default function AdminDashboard() {
                   <div key={p.productId} className="flex items-center gap-3">
                     <span className="text-sm font-bold text-muted-foreground w-5">#{i + 1}</span>
                     <div className="w-10 h-10 rounded-lg bg-muted overflow-hidden shrink-0">
-                      {p.imageUrl ? <img src={p.imageUrl} alt={p.productName} className="w-full h-full object-cover" /> : <div className="w-full h-full flex items-center justify-center text-sm">🏠</div>}
+                      {p.imageUrl ? <img src={getImageUrl(p.imageUrl)} alt={p.productName} className="w-full h-full object-cover" /> : <div className="w-full h-full flex items-center justify-center text-sm">🏠</div>}
                     </div>
                     <div className="flex-1 min-w-0">
                       <p className="text-sm font-medium truncate">{p.productName}</p>
