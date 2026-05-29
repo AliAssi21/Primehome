@@ -1,0 +1,13 @@
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "rootDir": ".",
+    "types": ["node"],
+    "paths": {
+      "../db": ["./db/index.ts"],
+      "../api-zod": ["./api-zod/index.ts"]
+    }
+  },
+  "include": ["src", "db", "api-zod", "scripts", "drizzle.config.ts", "build.mjs"]
+}

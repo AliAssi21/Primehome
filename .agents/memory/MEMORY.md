@@ -1,1 +1,0 @@
-- [Prime Home LB stack](prime-home-stack.md) — full-stack ecommerce; key patterns for auth, cart, DB, and context setup.

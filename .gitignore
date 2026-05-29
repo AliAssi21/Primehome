@@ -1,49 +1,76 @@
-# See https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
+# =========================
+# Dependencies
+# =========================
+node_modules
+**/node_modules
 
-# compiled output
+# =========================
+# Build outputs
+# =========================
 dist
+build
+out
 tmp
 out-tsc
 *.tsbuildinfo
-.expo
-.expo-shared
 
-# dependencies
-node_modules
+# =========================
+# Environment variables (CRITICAL)
+# =========================
+.env
+.env.*
+.env.local
+.env.*.local
+backend/.env
+backend/.env.*
 
-# IDEs and editors
-/.idea
-.project
-.classpath
-.c9/
-*.launch
-.settings/
-*.sublime-workspace
+# =========================
+# Logs
+# =========================
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+logs
+*.log
 
-# IDE - VSCode
-.vscode/*
+# =========================
+# Runtime / cache
+# =========================
+coverage
+.cache
+.local
+.vite
+.eslintcache
+
+# =========================
+# IDEs
+# =========================
+.vscode/
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
 
-# misc
-/.sass-cache
-/connect.lock
-/coverage
-/libpeerconnection.log
-npm-debug.log
-yarn-error.log
-testem.log
-/typings
+.idea/
+*.sublime-workspace
+*.sublime-project
 
-# System Files
+# =========================
+# OS files
+# =========================
 .DS_Store
 Thumbs.db
 
-.cursor/rules/nx-rules.mdc
-.github/instructions/nx.instructions.md
+# =========================
+# Backend runtime files
+# =========================
+/logs
+*.pid
+*.seed
 
-# Replit
-.cache/
-.local/
+# =========================
+# Replit / misc tools
+# =========================
+.replit
+.cursor/
+.github/instructions/
